@@ -1,25 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {
-      color: {
-        //primary
+    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    theme: {
+        extend: {
+            colors: {
+                //primary
 
-        "Orange": "hsl(25, 97%, 53%)",
+                "orange": "hsl(25, 97%, 53%)",
 
-        // Neutral
+                // Neutral
 
-        "white": "hsl(0, 0%, 100%)",
-        "light-grey": "hsl(217, 12%, 63%)",
-        "medium-grey": "hsl(216, 12%, 54%)",
-        "dark-blue": "hsl(213, 19%, 18%)",
-        "very-dark-blue": "hsl(216, 12%, 8%)",
-      },
+                "white": "hsl(0, 0%, 100%)",
+                "light-grey": "hsl(217, 12%, 63%)",
+                "medium-grey": "hsl(216, 12%, 54%)",
+                "dark-blue": "hsl(213, 19%, 18%)",
+                "very-dark-blue": "hsl(216, 12%, 8%)",
+            },
+        },
     },
-  },
-  plugins: [],
-}
+    plugins: [],
+};
