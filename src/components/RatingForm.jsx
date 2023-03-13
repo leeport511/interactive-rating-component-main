@@ -1,18 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { StarIcon } from "./icons/StarIcon";
 
-const arrayRating = [1, 2, 3, 4, 5];
+const initialStateRatings = [
+    {
+        ranking: "1",
+        isSelected: false,
+    },
+    {
+        ranking: "2",
+        isSelected: false,
+    },
+    {
+        ranking: "3",
+        isSelected: false,
+    },
+    {
+        ranking: "4",
+        isSelected: false,
+    },
+    {
+        ranking: "5",
+        isSelected: false,
+    },
+];
 
 export const RatingForm = () => {
+    const [ratings, setRating] = useState(initialStateRatings);
+
+    const { ranking, isSelected } = ratings;
+
+
+    const handleSelectRating = (e) => {
+        e.preventDefault();
+        setRating({ ...ranking, isSelected: true });
+        console.log(e);
+
+        
+        
+
+        console.log(ratings);
+    };
+
+    const handleSubmit = () => {};
+
     return (
-        <div className="container flex h-screen items-center justify-center bg-very-dark-blue">
-            <div className="m-auto w-[80%]">
+        <div className="flex h-screen flex-1 items-center justify-center bg-very-dark-blue">
+            <div className="m-auto w-[80%] sm:w-[50%] md:w-[45%] lg:w-[35%] xl:w-[22%]">
                 <section className="rounded-2xl bg-dark-blue p-6">
                     <div className="mb-7 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-gray-800">
                         <StarIcon />
                     </div>
                     <div className="mb-7">
-                        <h2 className="mb-3 text-3xl text-white font-bold">
+                        <h2 className="mb-3 text-3xl font-bold text-white">
                             How did we do?
                         </h2>
                         <p className="text-left text-[15px] text-light-grey">
@@ -23,22 +62,26 @@ export const RatingForm = () => {
                     </div>
                     <form className="mb-3">
                         <div className="mb-5 flex justify-between ">
-                            {arrayRating.map((rating, i) => {
+                            {ratings.map((rtg, i) => {
                                 return (
-                                    <div className="mb-3 ">
-                                        <button
-                                            className="flex h-[50px] w-[50px] items-center justify-center rounded-full bg-gray-700 text-[15px] text-light-grey  hover:bg-medium-grey hover:text-dark-blue active:bg-orange active:text-white"
-                                            key={i}
-                                        >
-                                            {rating}
-                                        </button>
-                                    </div>
+                                    <button
+                                        key={i}
+                                        onClick={() => handleSelectRating(rtg.ranking)}
+                                        className={`${
+                                            isSelected && "bg-medium-grey"
+                                        } mb-4 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-gray-700 text-[15px] text-light-grey  hover:bg-orange hover:text-white active:bg-medium-grey active:text-dark-blue`}
+                                        value={rtg.ranking}
+                                        name={rtg.ranking}
+                                    >
+                                        {rtg.ranking}
+                                    </button>
                                 );
                             })}
                         </div>
                         <button
+                            onSubmit={handleSubmit}
                             type="submit"
-                            className="w-[100%] rounded-full bg-orange p-4 tracking-[0.25rem] text-white active:text-orange active:bg-white font-bold hover:opacity-80"
+                            className="w-[100%] rounded-full bg-orange p-4 font-bold tracking-[0.25rem] text-white hover:opacity-80 active:bg-white active:text-orange"
                         >
                             SUBMIT
                         </button>
