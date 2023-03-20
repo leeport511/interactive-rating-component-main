@@ -27,18 +27,14 @@ const initialStateRatings = [
 export const RatingForm = () => {
     const [ratings, setRating] = useState(initialStateRatings);
 
-    const { ranking, isSelected } = ratings;
+    const handleSelectRating = (ranking) => {
+        const updatedRatings = ratings.map((r) =>
+            r.ranking === ranking
+                ? { ...r, isSelected: true }
+                : { ...r, isSelected: false }
+        );
 
-
-    const handleSelectRating = (e) => {
-        e.preventDefault();
-        setRating({ ...ranking, isSelected: true });
-        console.log(e);
-
-        
-        
-
-        console.log(ratings);
+        setRating(updatedRatings);
     };
 
     const handleSubmit = () => {};
@@ -60,26 +56,29 @@ export const RatingForm = () => {
                             improve our offering!
                         </p>
                     </div>
-                    <form className="mb-3">
-                        <div className="mb-5 flex justify-between ">
-                            {ratings.map((rtg, i) => {
-                                return (
-                                    <button
-                                        key={i}
-                                        onClick={() => handleSelectRating(rtg.ranking)}
+                    <form onSubmit={handleSubmit} className="mb-3">
+                        <div className="mb-5 flex justify-between">
+                            {ratings.map((rtg, i) => (
+                                <button
+                                    key={i}
+                                    type="button"
+                                    onClick={() =>
+                                        handleSelectRating(rtg.ranking)
+                                    }
+                                >
+                                    <div
                                         className={`${
-                                            isSelected && "bg-medium-grey"
+                                            rtg.isSelected
+                                                ? "bg-medium-grey text-dark-blue"
+                                                : "bg-gray-700 text-light-grey "
                                         } mb-4 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-gray-700 text-[15px] text-light-grey  hover:bg-orange hover:text-white active:bg-medium-grey active:text-dark-blue`}
-                                        value={rtg.ranking}
-                                        name={rtg.ranking}
                                     >
                                         {rtg.ranking}
-                                    </button>
-                                );
-                            })}
+                                    </div>
+                                </button>
+                            ))}
                         </div>
                         <button
-                            onSubmit={handleSubmit}
                             type="submit"
                             className="w-[100%] rounded-full bg-orange p-4 font-bold tracking-[0.25rem] text-white hover:opacity-80 active:bg-white active:text-orange"
                         >
