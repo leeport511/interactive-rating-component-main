@@ -1,6 +1,9 @@
 import React from "react";
 
-export const ThankYouPage = () => {
+export const ThankYouPage = ({rating}) => {
+
+    
+
     return (
         <div className="flex h-screen flex-1 items-center justify-center bg-very-dark-blue">
             <div className="m-auto w-[80%] sm:w-[50%] md:w-[45%] lg:w-[35%] xl:w-[22%] text-center">
@@ -9,7 +12,7 @@ export const ThankYouPage = () => {
                         <img src="./images/illustration-thank-you.svg" alt="" />
                     </div>
                     <div className="text-orange bg-gray-700 rounded-full mb-8 text-[15px] w-[230px] text-center p-2 m-auto">
-                      <p className="">{`You selected (rating) out of 5`}</p>
+                      <p className="">{`You selected ${rating} out of 5`}</p>
                     </div>
                     <div className="mb-7">
                         <h2 className="mb-5 text-3xl font-semibold text-white">

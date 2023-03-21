@@ -1,43 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { StarIcon } from "./icons/StarIcon";
 
-const initialStateRatings = [
-    {
-        ranking: "1",
-        isSelected: false,
-    },
-    {
-        ranking: "2",
-        isSelected: false,
-    },
-    {
-        ranking: "3",
-        isSelected: false,
-    },
-    {
-        ranking: "4",
-        isSelected: false,
-    },
-    {
-        ranking: "5",
-        isSelected: false,
-    },
-];
 
-export const RatingForm = () => {
-    const [ratings, setRating] = useState(initialStateRatings);
 
-    const handleSelectRating = (ranking) => {
-        const updatedRatings = ratings.map((r) =>
-            r.ranking === ranking
-                ? { ...r, isSelected: true }
-                : { ...r, isSelected: false }
-        );
+export const RatingForm = ({handleSelectRating, ratings, handleSubmit }) => {
 
-        setRating(updatedRatings);
-    };
+    
 
-    const handleSubmit = () => {};
 
     return (
         <div className="flex h-screen flex-1 items-center justify-center bg-very-dark-blue">
